@@ -5,7 +5,7 @@ public class moveScript : MonoBehaviour {
 
 	//variables
 	public float Speed = 10.0f;
-	public float JumpSpeed = 6.0f;
+	//public float JumpSpeed = 6.0f;
 	public float Gravity = 20.0f;
 	public float RotateSpeed = 6.0f;
 	public float BulletSpeed;
@@ -21,6 +21,11 @@ public class moveScript : MonoBehaviour {
 	void Update () {
 	
 		CharacterController controller = GetComponent<CharacterController> ();
+
+		if (Input.GetKeyDown (KeyCode.J)) {
+			moveDirection = new Vector3(0, 2f, 0);
+			controller.Move(moveDirection);
+		}
 
 		//is the player on ground?
 		if (controller.isGrounded) {
@@ -47,7 +52,7 @@ public class moveScript : MonoBehaviour {
 
 
 			//feed move direction with input
-			moveDirection = new Vector3(0, 0, -Input.GetAxis("Vertical"));
+			moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
 			moveDirection = transform.TransformDirection(moveDirection);
 			//multiply it by speed
 			moveDirection *= Speed;

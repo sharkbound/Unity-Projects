@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\moveScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurretControl.cs">
     <Files>
-      <File FileName="Assets\moveScript.cs" Line="39" Column="5" />
+      <File FileName="Assets\TurretControl.cs" Line="15" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

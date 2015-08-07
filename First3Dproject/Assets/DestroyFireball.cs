@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class DestroyFireball : MonoBehaviour {
-	public float DestroyDelay;
+	public float LifeTime;
 	// Use this for initialization
 	void Start () {
-		Destroy (gameObject, DestroyDelay);
+		Destroy (gameObject, LifeTime);
 	}
 	
 	// Update is called once per frame
