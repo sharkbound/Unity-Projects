@@ -7,7 +7,7 @@ public class LifeControl : MonoBehaviour {
 	public Sprite Life2;  // 2 hearts
 	public Sprite Life3;   // 3 hearts
 	public static int LIVES = 3;
-	public static int HITS = 1;
+	public static int HITS = 0;
 	public Transform bodypart1;
 	public Transform bodypart2;
 	// Use this for initialization
@@ -57,18 +57,32 @@ public class LifeControl : MonoBehaviour {
 			moveScript.dead = true;
 			//set lifes to 3
 			LIVES = 3;
+			HITS = 0;
 			break;
 		}
-		//var bodyparts = gameObject.GetComponentsInChildren<Transform>();
 	switch(HITS){
+		case 0:
+			// if no hits render the 2 tail peices
+			GameObject.Find("bodypart2").GetComponentInChildren<MeshRenderer>().enabled = true;
+			GameObject.Find("bodypart1").GetComponentInChildren<MeshRenderer>().enabled = true;
+			break;
 		case 1:
 			// Disable bodypart1
-
+			GameObject.Find("bodypart2").GetComponentInChildren<MeshRenderer>().enabled = false;
+			GameObject.Find("bodypart1").GetComponentInChildren<MeshRenderer>().enabled = true;
+			LIVES = 2;
 			break;
 		case 2:
+			GameObject.Find("bodypart2").GetComponentInChildren<MeshRenderer>().enabled = false;
+			GameObject.Find("bodypart1").GetComponentInChildren<MeshRenderer>().enabled = false;
+			LIVES = 1;
 			// Disable bodypart2
 			break;
 		case 3:
+			GameObject.Find("bodypart2").GetComponentInChildren<MeshRenderer>().enabled = true;
+			GameObject.Find("bodypart1").GetComponentInChildren<MeshRenderer>().enabled = true;
+			LIVES = 0;
+			moveScript.dead = true;
 			break;
 		}
 

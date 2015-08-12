@@ -7,7 +7,7 @@ public class TurretControl : MonoBehaviour {
 	public float RotationDamping;
 	public Rigidbody Projectile;
 	public float BulletSpeed;
-	private int seconds;
+	private int seconds = 110;
 	//private float fireDelay = 30f;
 
 	// Use this for initialization
@@ -30,14 +30,15 @@ public class TurretControl : MonoBehaviour {
 			{
 				if (hit.collider.tag == "Player")
 				{
-					if(seconds > 111)  // when counter is more than 61 it will reset to 0
-					{
-						seconds = 0;
-					}
+
 					if(seconds > 110) // when counter is 60 it will shoot
 					{
 						shoot ();
+						// reset counter
+						seconds = 0;
+
 					}
+
 				}
 			}
             

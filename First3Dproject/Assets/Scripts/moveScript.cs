@@ -4,6 +4,10 @@ using System.Collections;
 public class moveScript : MonoBehaviour {
 
 	//variables
+	
+	int onetime = 0;
+	//tried counter
+	public int trys = 4;
 	//getting hit
 	public float dieingRotation;
 	public float decreaseSpinSpeed;
@@ -33,10 +37,22 @@ public class moveScript : MonoBehaviour {
 	{
 		// if player is dead
 		if (dead) {
+
+			if (onetime == 1){
+				onetime = 0;
+				dead = false;
+			}
 			//set players position to 4 above center of map
 			transform.position = new Vector3(0, 4, 0);
 			// make player no longer dead
-			dead = false;
+			trys -= 1;
+			if (trys <= 0)
+			{
+				trys = 3;
+				onetime = 0;
+			  Application.LoadLevel(0);
+			}
+			onetime = 1;
 		}
 		if (gotHit) {
 			if(dieingRotation < 1){
@@ -44,6 +60,7 @@ public class moveScript : MonoBehaviour {
 				dieingRotation = backups[0];
 				decreaseSpinSpeed = backups[1];
 				decayTime = backups[2];
+				LifeControl.HITS += 1;
 				gotHit = false;
 			}
 			else {
@@ -62,7 +79,7 @@ public class moveScript : MonoBehaviour {
 		if(hit.gameObject.tag == "fallout")
 		{
 			// subtract 1 life
-			LifeControl.LIVES -= 1;
+			LifeControl.LIVES = 0;
 			//teleport player to center of map
 			dead = true;
 		}
@@ -100,6 +117,8 @@ public class moveScript : MonoBehaviour {
 				Rigidbody bullet = Instantiate(BulletPrefab,
 				                                  GameObject.Find("spawnPoint").transform.position,
 				                                  Quaternion.identity) as Rigidbody;
+				//give it a tag
+				bullet.tag = "playerProjectile";
 				// add forward force to the bullet
 				bullet.AddForce(ShootLocation.forward * BulletSpeed);
 			
@@ -111,6 +130,8 @@ public class moveScript : MonoBehaviour {
 				Rigidbody bullet = Instantiate(BulletPrefab,
 				                               GameObject.Find("spawnPoint").transform.position,
 				                               Quaternion.identity) as Rigidbody;
+				//give it a tag
+				bullet.tag = "playerProjectile";
 				// add forward force to the bullet
 				bullet.AddForce(ShootLocation.forward * BulletSpeed);
 			}
