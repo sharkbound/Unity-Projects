@@ -19,8 +19,5 @@ public class cursorLock : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 		}
-		if (Input.GetKeyUp(KeyCode.R)) {
-			Debug.LogError("lol");
-		}
 	}
 }

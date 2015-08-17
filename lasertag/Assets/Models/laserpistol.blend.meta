@@ -37,6 +37,12 @@ ModelImporter:
     4300006: GunBase
     4300008: Cylinder
     4300010: buttOfGun
+    6400000: buttOfGun
+    6400002: Cylinder
+    6400004: GunBase
+    6400006: ring
+    6400008: ring_001
+    6400010: ring_002
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -64,7 +70,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

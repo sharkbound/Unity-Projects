@@ -4,6 +4,7 @@ using System.Collections;
 public class MoveScript : MonoBehaviour {
 	// move speed
 	public float Speed = 10.0f;
+	public float cameraSpeed = 10.0f;
 	//public float JumpSpeed = 6.0f;
 	// gravity that effects the player
 	public float Gravity = 20.0f;
@@ -21,10 +22,11 @@ public class MoveScript : MonoBehaviour {
 		CharacterController controller = GetComponent<CharacterController> ();
 		if (controller.isGrounded) {
 			//trying to get mouse camera controls working
-			//float h = 10 * Input.GetAxis("Mouse X");
-			//float v = 10 * -Input.GetAxis("Mouse Y");
+			//float h = Input.GetAxis("Mouse X") * cameraSpeed;
+			//float v =  -Input.GetAxis("Mouse Y") * cameraSpeed;
 			//transform.Rotate(v, h, 0);
-			transform.Find("Camera").transform.Rotate(10 * -Input.GetAxis("Mouse Y"), 10 * Input.GetAxis("Mouse X"), 0);
+			//Vector3 cameraRotate = new Vector3(v, h, 0);
+			//transform.Find("Camera").transform.Rotate(cameraRotate, Space.World);
              
 
 			//rotate camera
