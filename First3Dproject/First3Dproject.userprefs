@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\lasertag\Assets\Scripts\FPSCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\lasertag\Assets\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs">
     <Files>
-      <File FileName="..\lasertag\Assets\Scripts\FPSCamera.cs" Line="67" Column="4" />
+      <File FileName="..\lasertag\Assets\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" Line="46" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

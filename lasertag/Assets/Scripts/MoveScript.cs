@@ -9,7 +9,7 @@ public class MoveScript : MonoBehaviour {
 	// gravity that effects the player
 	public float Gravity = 20.0f;
 	//camera rotate speed
-	public float RotateSpeed = 6.0f;
+	public float RotateSpeed = 9.0f;
 	private Vector3 moveDirection = Vector3.zero;
 
     void Start(){
@@ -18,24 +18,20 @@ public class MoveScript : MonoBehaviour {
 	//is the player on ground?
 	void Update(){
 
+		//var camrot = GameObject.Find ("pc").transform.rotation;
 		// charater controller variable
 		CharacterController controller = GetComponent<CharacterController> ();
 		if (controller.isGrounded) {
-			//trying to get mouse camera controls working
-			//float h = Input.GetAxis("Mouse X") * cameraSpeed;
-			//float v =  -Input.GetAxis("Mouse Y") * cameraSpeed;
-			//transform.Rotate(v, h, 0);
-			//Vector3 cameraRotate = new Vector3(v, h, 0);
-			//transform.Find("Camera").transform.Rotate(cameraRotate, Space.World);
-             
 
-			//rotate camera
-			transform.Rotate (0, Input.GetAxis ("Horizontal") * RotateSpeed, 0);
+			//rotate the player with the camera
+			//transform.Rotate(0, Input.GetAxis("Horizontal") * RotateSpeed,0);
 
 			//feed move direction with input
 			moveDirection = new Vector3 (0, 0, Input.GetAxis ("Vertical"));
+
 			// move in the inputed direction
 			moveDirection = transform.TransformDirection (moveDirection);
+
 			//multiply it by speed
 			moveDirection *= Speed;
 		}

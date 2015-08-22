@@ -1,20 +1,21 @@
-i started with ardunio and making lights blink at differint intervals.
-i later starting controlling 7-segment displays with arduino, i made it say varius stuff like "hello world"
-later i took apart a rc and hook its motor's wires up to a arduino seeed motor controller
+i started with ardunio and making lights blink at different intervals.
+i later starting controlling 7-segment displays with arduino, i made it say various stuff like "hello world"
+later i took apart a rc car and hook its motor's wires up to a arduino seeed motor controller
 i made the rc car do varius stuff like going in a star formation.
 
 i later started learning c# in visual studio from youtube
 the first c# program i made is a program that says "Hello world"
 i then made a programs that reverses entered text and write the original text and the reversed text to a txt file
-then i made a command line calculater with c#
+then i made a command line calculator with c# in visual studio 
 then i made a command line c# program that reads text from a text file then prints it in the console
 i then learned how to  made visual studio code snippets
 then i made a magic 8 ball command line application
-i started making a server plugin for a server i manage in c#
+i started making a server plug-in for a server i manage in c#
 
 i later got started making games in unity 3D from a youtube tutorial
 i learned how to use unity and attaching scripts to game objects and such
 then i learned how to raycast in unity
 i then started making unity models using blender
 
-started making a lasertag game, and learned how to make camera follow mouse
+started making a lasertag game, and learned how to make camera follow mouse, needs fixing but working on it
+started making level for lasertag in blender

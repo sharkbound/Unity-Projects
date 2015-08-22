@@ -48,7 +48,7 @@ public class moveScript : MonoBehaviour {
 			trys -= 1;
 			if (trys <= 0)
 			{
-				trys = 3;
+				trys = 4;
 				onetime = 0;
 			  Application.LoadLevel(0);
 			}
