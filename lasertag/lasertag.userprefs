@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\raycast.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HitLifeReduce.cs">
     <Files>
-      <File FileName="Assets\Scripts\raycast.cs" Line="41" Column="3" />
+      <File FileName="Assets\Scripts\HitLifeReduce.cs" Line="25" Column="42" />
+      <File FileName="Assets\Scripts\raycast.cs" Line="14" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
