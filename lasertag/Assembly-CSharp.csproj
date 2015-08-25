@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\FPSCamera.cs" />
      <Compile Include="Assets\Scripts\HitLifeReduce.cs" />
+     <Compile Include="Assets\Scripts\HubAuto.cs" />
+     <Compile Include="Assets\Scripts\HubForce.cs" />
      <Compile Include="Assets\Scripts\MoveScript.cs" />
      <Compile Include="Assets\Scripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\cursorLock.cs" />
