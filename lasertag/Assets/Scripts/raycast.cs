@@ -12,18 +12,25 @@ public class raycast : MonoBehaviour {
 	public int DmgDelay = 60;
 	public int force = 5;
 	public int AutoForce = 5;
-	// sprites
 	public Sprite AutoOff;
 	public Sprite AutoOn;
 	public Sprite AddForceOn;
 	public Sprite AddForceOff;  
+	public Transform enemy;
 	//private variables
 	private int timePassed = 0;
 	private LineRenderer line;
 	private bool DoAuto = false;
 	private bool AddForce = false;
+	private Image autoImages;
+	private Image forceImage;
+	private GameObject spawnPoint;
 	// Use this for initialization
 	void Start () {
+		
+		spawnPoint = GameObject.Find("Cylinder");
+		forceImage = GameObject.Find("AddForceImage").GetComponentInChildren<Image>();
+		autoImages = GameObject.Find("AutoImage").GetComponentInChildren<Image>();
 		line = GameObject.Find("laserspawn").gameObject.GetComponent<LineRenderer>();
 		line.enabled = false;
 	}
@@ -33,12 +40,13 @@ public class raycast : MonoBehaviour {
 		ToggleAuto ();
 		ToggleForce ();
 		fireSelection ();
-		if (Input.GetKeyDown(KeyCode.R)){
-		//	GameObject.Find("enemy").SetActive(true);
-		}
+		SpawnEnemy();
+
 	}
-	void RefreshEnemys(){
-	 // todo
+	void SpawnEnemy(){
+		if (Input.GetKeyDown(KeyCode.R)){
+			Instantiate(enemy, spawnPoint.transform.forward, Quaternion.identity);
+		}
 	}
 	void DisableLine(){
 		line.enabled = false;
@@ -47,11 +55,10 @@ public class raycast : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.M)){
 			Debug.Log("toggled! " + DoAuto);
 			DoAuto = !DoAuto;
-			Image images = GameObject.Find("AutoImage").GetComponentInChildren<Image>();
 			if (!DoAuto){
-				images.sprite = AutoOff;
+				autoImages.sprite = AutoOff;
 			} else {
-				images.sprite = AutoOn;
+				autoImages.sprite = AutoOn;
 			}
 		}
 	}
@@ -59,11 +66,10 @@ public class raycast : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.N)){
 			Debug.Log("toggled! " + AddForce);
 			AddForce = !AddForce;
-			Image images = GameObject.Find("AddForceImage").GetComponentInChildren<Image>();
 			if (!AddForce){
-				images.sprite = AddForceOff;
+				forceImage.sprite = AddForceOff;
 			} else {
-				images.sprite = AddForceOn;
+				forceImage.sprite = AddForceOn;
 			}
 
 		}
