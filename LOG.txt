@@ -19,3 +19,6 @@ i then started making unity models using blender
 
 started making a lasertag game, and learned how to make camera follow mouse, needs fixing but working on it
 started making level for lasertag in blender
+fixed issue with raycrasting with aiming down
+
+added photon to the project (multiplayer cloud)
