@@ -12,11 +12,12 @@ public class raycast : MonoBehaviour {
 	public int DmgDelay = 60;
 	public int force = 5;
 	public int AutoForce = 5;
+	public int LaunchSpeed = 10;
 	public Sprite AutoOff;
 	public Sprite AutoOn;
 	public Sprite AddForceOn;
 	public Sprite AddForceOff;  
-	public Transform enemy;
+	public Rigidbody enemy;
 	//private variables
 	private int timePassed = 0;
 	private LineRenderer line;
@@ -24,11 +25,11 @@ public class raycast : MonoBehaviour {
 	private bool AddForce = false;
 	private Image autoImages;
 	private Image forceImage;
-	private GameObject spawnPoint;
+	//private GameObject spawnPoint;
 	// Use this for initialization
 	void Start () {
-		
-		spawnPoint = GameObject.Find("Cylinder");
+		//spawnPoint = GameObject.Find("Cylinder");
+
 		forceImage = GameObject.Find("AddForceImage").GetComponentInChildren<Image>();
 		autoImages = GameObject.Find("AutoImage").GetComponentInChildren<Image>();
 		line = GameObject.Find("laserspawn").gameObject.GetComponent<LineRenderer>();
@@ -41,19 +42,43 @@ public class raycast : MonoBehaviour {
 		ToggleForce ();
 		fireSelection ();
 		SpawnEnemy();
-
+		DestroyStuff();
+	}
+	void DestroyStuff(){
+		int destCount = 0;
+		if (Input.GetKeyDown(KeyCode.Delete)){
+			GameObject[] destroyList = GameObject.FindGameObjectsWithTag("CubeEnemy");
+				foreach(GameObject obj in destroyList){
+				Destroy(obj.gameObject);
+				destCount++;
+			}
+			Debug.Log("Destroyed items: " + destCount);
+			destCount = 0;
+		}
 	}
 	void SpawnEnemy(){
-		if (Input.GetKeyDown(KeyCode.R)){
-			Instantiate(enemy, spawnPoint.transform.forward, Quaternion.identity);
+		if (Input.GetKey(KeyCode.Mouse1)){
+			Vector3 offset = new Vector3(0, 2, 0);
+			Rigidbody clone;
+			clone = Instantiate(enemy, cam.transform.position + offset, cam.transform.rotation) as Rigidbody;
+			clone.AddForce(transform.forward * LaunchSpeed);
 		}
+		else if (Input.GetKeyUp(KeyCode.R)){
+			Vector3 offset = new Vector3(0, 2, 0);
+			Rigidbody clone;
+			clone = Instantiate(enemy, transform.position + offset, Quaternion.identity) as Rigidbody;
+			clone.AddForce(transform.forward * LaunchSpeed);
+		}
+	}
+	void DestroyTimer(float time){
+		Invoke("DisableLine", time);
 	}
 	void DisableLine(){
 		line.enabled = false;
 	}
 	void ToggleAuto(){
 		if (Input.GetKeyDown(KeyCode.M)){
-			Debug.Log("toggled! " + DoAuto);
+			//Debug.Log("toggled! " + DoAuto);
 			DoAuto = !DoAuto;
 			if (!DoAuto){
 				autoImages.sprite = AutoOff;
@@ -64,7 +89,7 @@ public class raycast : MonoBehaviour {
 	}
 	void ToggleForce(){
 		if (Input.GetKeyDown(KeyCode.N)){
-			Debug.Log("toggled! " + AddForce);
+			//Debug.Log("toggled! " + AddForce);
 			AddForce = !AddForce;
 			if (!AddForce){
 				forceImage.sprite = AddForceOff;
@@ -82,7 +107,9 @@ public class raycast : MonoBehaviour {
 				fireLaserOnce ();
 			}
 		} else {
-			line.enabled = false;
+			if (line.enabled == true) {
+				line.enabled = false;
+			}
 		}
 	}
 	void fireLaserOnce()
@@ -93,34 +120,29 @@ public class raycast : MonoBehaviour {
 			line.SetPosition (0, transform.Find ("laserspawn").position);
 			if (!AddForce)
 			{
+				line.enabled = true;
 				if (Physics.Raycast (ray, out hit, 100)) {
-					line.enabled = true;
 					line.SetPosition (1, hit.point);
-					Invoke ("DisableLine", 0.1f);
 					hit.transform.SendMessage ("damage", dmg, SendMessageOptions.DontRequireReceiver);
-				//Destroy(hit.transform.gameObject);
 				} else {
-					line.enabled = true;
 					line.SetPosition (1, ray.GetPoint (60));
-					Invoke ("DisableLine", 0.1f);
 				}
 		   } else {
+				line.enabled = true;
 				if (Physics.Raycast (ray, out hit, 100)) {
-					line.enabled = true;
 					line.SetPosition (1, hit.point);
 					if (hit.rigidbody){
 						hit.rigidbody.AddForceAtPosition(transform.forward * force, hit.point);
 						Debug.Log("Rigidbody " + hit.transform.gameObject.name + " Hit!");
 					}
-					Invoke ("DisableLine", 0.1f);
-					//Destroy(hit.transform.gameObject);
 				} else {
-					line.enabled = true;
 					line.SetPosition (1, ray.GetPoint (60));
-					Invoke ("DisableLine", 0.1f);
 				}
 			}
 	    }
+		if (line.enabled == true){
+			DestroyTimer(0.05f);
+		}
 	}
 	void fireLaserRapid()
 	{
@@ -142,8 +164,6 @@ public class raycast : MonoBehaviour {
 				} else {
 					line.SetPosition (1, ray.GetPoint (60));
 				}
-			} else {
-				line.enabled = false; 
 			}
 		} else {
 			if (Input.GetButton ("Fire1")) {
@@ -151,19 +171,20 @@ public class raycast : MonoBehaviour {
 				RaycastHit hit;
 				line.SetPosition (0, transform.Find ("laserspawn").position);
 				
-				if (Physics.Raycast (ray, out hit, 100)) {
+				if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
 					line.SetPosition (1, hit.point);
 					if (hit.rigidbody){
-						hit.rigidbody.AddForceAtPosition(transform.forward * AutoForce, hit.point);
-						Debug.Log("Rigidbody " + hit.transform.gameObject.name + " Hit!");
+						//hit.rigidbody.AddForceAtPosition(transform.forward * AutoForce, hit.point);
+						//hit.rigidbody.AddExplosionForce(35f, hit.point, 100f, 10f);
+						hit.rigidbody.AddForce(Vector3.up * 1000f);
+						float dist = Vector3.Distance(hit.point, gun.position);
+						Debug.Log("Rigidbody " + hit.transform.gameObject.name + "Hit! the object is " + dist + " far away from you ");
 					}
 					//if (timePassed >= DmgDelay) {
 					//}
 				} else {
 					line.SetPosition (1, ray.GetPoint (60));
 				}
-			} else {
-				line.enabled = false; 
 			}
 		}
 
