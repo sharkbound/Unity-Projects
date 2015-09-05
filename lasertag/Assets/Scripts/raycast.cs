@@ -28,7 +28,6 @@ public class raycast : MonoBehaviour {
 	//private GameObject spawnPoint;
 	// Use this for initialization
 	void Start () {
-		//spawnPoint = GameObject.Find("Cylinder");
 
 		forceImage = GameObject.Find("AddForceImage").GetComponentInChildren<Image>();
 		autoImages = GameObject.Find("AutoImage").GetComponentInChildren<Image>();
@@ -38,6 +37,10 @@ public class raycast : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			GameObject.Find("FPSController").transform.position = GameObject.Find("tele1").transform.position;
+		}
 		ToggleAuto ();
 		ToggleForce ();
 		fireSelection ();
@@ -57,17 +60,27 @@ public class raycast : MonoBehaviour {
 		}
 	}
 	void SpawnEnemy(){
-		if (Input.GetKey(KeyCode.Mouse1)){
-			Vector3 offset = new Vector3(0, 2, 0);
-			Rigidbody clone;
-			clone = Instantiate(enemy, cam.transform.position + offset, cam.transform.rotation) as Rigidbody;
-			clone.AddForce(transform.forward * LaunchSpeed);
+		if (Input.GetKeyDown(KeyCode.Mouse1) && Input.GetKey(KeyCode.R)){
+				for (int ii = 0; ii < 100; ii++){
+					Vector3 offset = new Vector3(0, 200, 0);
+					Rigidbody clone;
+					clone = Instantiate(enemy, cam.transform.position + offset, cam.transform.rotation) as Rigidbody;
+					clone.AddForce(Vector3.down * LaunchSpeed);
+					clone.AddForce(transform.forward * LaunchSpeed);
+				} 
 		}
-		else if (Input.GetKeyUp(KeyCode.R)){
+	    else if (!Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.Mouse1))
+		{
+				Vector3 offset = new Vector3(0, 2, 0);
+				Rigidbody clone;
+				clone = Instantiate(enemy, cam.transform.position + offset, cam.transform.rotation) as Rigidbody;
+				clone.AddForce(transform.forward * LaunchSpeed);
+		}
+		else if (Input.GetKeyDown(KeyCode.R)){ 
 			Vector3 offset = new Vector3(0, 2, 0);
 			Rigidbody clone;
 			clone = Instantiate(enemy, transform.position + offset, Quaternion.identity) as Rigidbody;
-			clone.AddForce(transform.forward * LaunchSpeed);
+			clone.AddForce(transform.forward * LaunchSpeed); 
 		}
 	}
 	void DestroyTimer(float time){

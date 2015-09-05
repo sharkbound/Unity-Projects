@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
-	public float FPSUpdateTime = 1.0f;
+	public float FPSUpdateTime = 0.5f;
 
 	public GameObject PauseUI;
 	public GameObject PlayerCam;
@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour {
 	private raycast fireScript;
 	// Use this for initialization
 	void Start () {
-		fireScript = GameObject.Find("laserpistol").GetComponent<raycast>();
+		fireScript = transform.Find("laserpistol").GetComponent<raycast>();  
 		PauseUI.SetActive(false);
 		var text = FPSText.GetComponent<Text>();
 		text.color = Color.red;
@@ -79,7 +79,7 @@ public class PauseMenu : MonoBehaviour {
 			PauseUI.SetActive(true);
 			Time.timeScale = 0;
 		} else {
-			fireScript.enabled = true;
+			fireScript.enabled = false;
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
 			PauseUI.SetActive(false);
