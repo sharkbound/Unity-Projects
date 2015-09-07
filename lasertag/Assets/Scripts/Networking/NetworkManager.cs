@@ -57,12 +57,13 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		PlayerSpawns MySpawnLocation = spawns[ Random.Range(0, spawns.Length) ];
-		GameObject MyPlayer = PhotonNetwork.Instantiate("RobotCharater", MySpawnLocation.transform.position, 
+		GameObject MyPlayer = PhotonNetwork.Instantiate("AnimRobot", MySpawnLocation.transform.position,
 		                          MySpawnLocation.transform.rotation, 0);
-		((MonoBehaviour)MyPlayer.GetComponent("FirstPersonController")).enabled = true;
+		//((MonoBehaviour)MyPlayer.GetComponent("FirstPersonController")).enabled = true;
 		MyPlayer.transform.FindChild("FirstPersonCharacter").GetComponent<Camera>().enabled = true;
 		MyPlayer.transform.FindChild("FirstPersonCharacter").GetComponent<AudioListener>().enabled = true;
-		//MyPlayer.GetComponent<AudioSource>().enabled = true;
+		MyPlayer.GetComponent<PlayerMovement>().enabled = true;
+		MyPlayer.GetComponent<PlayerCam>().enabled = true;
 		ToggleOverViewCam();
 
 	}

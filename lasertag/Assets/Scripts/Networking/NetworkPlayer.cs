@@ -27,7 +27,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 			stream.SendNext(transform.position); //send our posision to the network
 			stream.SendNext(transform.rotation); // send our rotation to the network
 		}
-		else{
+		else {
 			//this is everyone elses players, we recieve their posisions here  
 			realPosition = (Vector3)stream.ReceiveNext(); //recieve others posisions
 			realRotation = (Quaternion)stream.ReceiveNext(); // recieve others rotations 
