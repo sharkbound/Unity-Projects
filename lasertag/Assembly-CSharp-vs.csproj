@@ -109,6 +109,7 @@
      <Compile Include="Assets\Scripts\Networking\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\Networking\PlayerSpawns.cs" />
+     <Compile Include="Assets\Scripts\playerScripts\FirstToThirdperson.cs" />
      <Compile Include="Assets\Scripts\playerScripts\HitLifeReduce.cs" />
      <Compile Include="Assets\Scripts\playerScripts\MoveScript.cs" />
      <Compile Include="Assets\Scripts\playerScripts\PlayerCam.cs" />
