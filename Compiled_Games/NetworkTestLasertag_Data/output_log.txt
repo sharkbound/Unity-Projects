@@ -20,7 +20,7 @@ Platform assembly: C:\Users\8\Documents\UnityProjects\Compiled_Games\NetworkTest
 Loading C:\Users\8\Documents\UnityProjects\Compiled_Games\NetworkTestLasertag_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
 Platform assembly: C:\Users\8\Documents\UnityProjects\Compiled_Games\NetworkTestLasertag_Data\Managed\Photon3Unity3D.dll (this message is harmless)
 Loading C:\Users\8\Documents\UnityProjects\Compiled_Games\NetworkTestLasertag_Data\Managed\Photon3Unity3D.dll into Unity Child Domain
-- Completed reload, in  0.154 seconds
+- Completed reload, in  0.109 seconds
 desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
@@ -33,7 +33,7 @@ Connect
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 143c -> priority: 1 
+  Thread -> id: 1bb8 -> priority: 1 
 OnJoinedLobby
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)

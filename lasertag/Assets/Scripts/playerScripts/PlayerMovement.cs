@@ -23,35 +23,44 @@ public class PlayerMovement : MonoBehaviour {
 		// WASD forward/back is stored in direction
 		direction = transform.rotation * new Vector3(Input.GetAxis("Horizontal"), 0, 
 		                                             Input.GetAxis("Vertical"));
+		// this makes sure you dont move faster if moving diaganlu
 		if (direction.magnitude > 1f){
 			direction = direction.normalized;
 		}
-
-		if (charater.isGrounded) {
-			if (anim.GetBool("Jumping") != false){
-				anim.SetBool("Jumping", false);
-			}
-			if (Input.GetButton("Jump")) {
-				verticalVelocity = jumpSpeed;
-			}
-			else {
-			verticalVelocity = 0f;
-			}
-		}
-		else {
-			anim.SetBool("Jumping", true);
-		}
-
+		// set the speed float to the vector3 lenght of the direction vector
 		anim.SetFloat("Speed", direction.magnitude);
 
+		if (charater.isGrounded && Input.GetButton("Jump")) {
+			verticalVelocity = jumpSpeed;
+		}
 	}
 
 	void FixedUpdate(){
+
 		Vector3 dist = direction * speed * Time.deltaTime;
-		verticalVelocity += Physics.gravity.y * Time.deltaTime;
+
+		// check if character is grounded and verticalvelocity is negative
+		if (charater.isGrounded && verticalVelocity < 0) {
+
+			//set jumping bool to false
+			anim.SetBool("Jumping", false);
+
+			// apply gravity 
+			verticalVelocity = Physics.gravity.y * Time.deltaTime;
+		} 
+		else {
+
+			if (Mathf.Abs(verticalVelocity) > jumpSpeed*0.75f) {
+				anim.SetBool("Jumping",true);
+			}
+
+			// apply gravity 
+			verticalVelocity += Physics.gravity.y * Time.deltaTime;
+		}
 
 		dist.y = verticalVelocity * Time.deltaTime;
 
+		// move the character
 		charater.Move(dist);
 	}
 }

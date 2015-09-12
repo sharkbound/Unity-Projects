@@ -105,6 +105,7 @@
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+     <Compile Include="Assets\Scripts\HealthScripts\Health.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkPlayer.cs" />
@@ -115,6 +116,7 @@
      <Compile Include="Assets\Scripts\playerScripts\PlayerCam.cs" />
      <Compile Include="Assets\Scripts\playerScripts\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\playerScripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\playerScripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\playerScripts\SimpleMouseRotator1.cs" />
      <Compile Include="Assets\Scripts\playerScripts\TeleportScript.cs" />
      <Compile Include="Assets\Scripts\playerScripts\cursorLock.cs" />

@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\lasertag\Assets\Scripts\raycast.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\lasertag\Assets\Scripts\Networking\NetworkPlayer.cs">
     <Files>
-      <File FileName="..\lasertag\Assets\Scripts\raycast.cs" Line="56" Column="50" />
-      <File FileName="Assets\Scripts\TurretControl.cs" Line="66" Column="35" />
+      <File FileName="..\lasertag\Assets\Scripts\Networking\NetworkPlayer.cs" Line="38" Column="20" />
+      <File FileName="..\lasertag\Assets\Scripts\Networking\NetworkManager.cs" Line="11" Column="3" />
+      <File FileName="..\lasertag\Assets\Scripts\playerScripts\PlayerMovement.cs" Line="61" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

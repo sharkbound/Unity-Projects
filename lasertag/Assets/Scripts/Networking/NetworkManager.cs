@@ -6,6 +6,7 @@ public class NetworkManager : MonoBehaviour {
 	private Text ConnectStatus;
 	public Camera OverViewCamera;
 	private PlayerSpawns[] spawns;
+	public bool OfflineMode = false;
 	// Use this for initialization
 	void Start () {
 
@@ -20,9 +21,15 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void Connect(){
+		if (OfflineMode) {
+			PhotonNetwork.offlineMode = true;
+			OnJoinedLobby();
+		}
+		else {
 		Debug.Log("Connect");
-		PhotonNetwork.ConnectUsingSettings("Alpha Version");
+		PhotonNetwork.ConnectUsingSettings("Dev Build");
 		ChangeStatusText();
+		}
 	}
 
 	void OnJoinedLobby(){
@@ -68,6 +75,7 @@ public class NetworkManager : MonoBehaviour {
 		MyPlayer.GetComponent<PlayerCam>().enabled = true;
 		MyPlayer.GetComponent<TeleportScript>().enabled = true;
 		MyPlayer.GetComponent<FirstToThirdperson>().enabled = true;
+		MyPlayer.GetComponent<Shooting>().enabled = true;
 		ToggleOverViewCam();
 	}
 
