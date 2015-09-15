@@ -9,7 +9,21 @@ public class Shooting : MonoBehaviour {
 	float cooldown = 0f;
 	RaycastHit hitinfo;
 	Ray ray;
-	
+	FXManager fxManager;
+	PhotonView fxManagerPV;
+
+	void Start() {
+		fxManager = GameObject.FindObjectOfType<FXManager>();
+
+		if (fxManager != null) {
+			fxManagerPV = fxManager.GetComponent<PhotonView>();
+		}
+
+		if (fxManager == null) {
+			Debug.LogError("could not find a FXManager");
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -50,10 +64,20 @@ public class Shooting : MonoBehaviour {
 					Debug.LogError("PhotonView not found");
 				}
 				else {
-					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.All, Damage);
+					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, Damage);
 					Debug.LogWarning(h.currentHP);
 
 				}
+			}
+			if (fxManager != null) {
+				fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
+			}
+		}
+		else {
+			// we did not hit anything except empty space, but do visual fx anyway
+			if (fxManager != null) {
+				hitPoint = Camera.main.transform.position + (Camera.main.transform.forward * 100f);
+				fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
 			}
 		}
 

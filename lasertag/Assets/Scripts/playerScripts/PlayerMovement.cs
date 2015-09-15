@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	[SerializeField] float speed = 10f;
+	public float runSpeed = 15f;
 	Vector3 direction = Vector3.zero;  // forward back and left right
 	float verticalVelocity = 0f;
 	[SerializeField] float jumpSpeed = 20f;
@@ -36,9 +37,13 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-
-		Vector3 dist = direction * speed * Time.deltaTime;
-
+		Vector3 dist = Vector3.zero;
+		if (Input.GetKey(KeyCode.LeftShift)) {
+			dist = direction * runSpeed * Time.deltaTime;
+		}
+		else {
+			dist = direction * speed * Time.deltaTime;
+		}
 		// check if character is grounded and verticalvelocity is negative
 		if (charater.isGrounded && verticalVelocity < 0) {
 

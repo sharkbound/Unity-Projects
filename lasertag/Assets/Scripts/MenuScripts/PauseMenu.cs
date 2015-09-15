@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour {
 	public float FPSUpdateTime = 0.5f;
 
 	public GameObject PauseUI;
-	public GameObject PlayerCam;
+	//public GameObject PlayerCam;
 	public GameObject FPSText;
 	// private variables
 	private bool paused = false;
@@ -15,10 +15,10 @@ public class PauseMenu : MonoBehaviour {
 	private int fps = 0;
 	private int frameCount = 0;
 	private float passedTime = 0.0f;
-	private raycast fireScript;
+	private Shooting fireScript;
 	// Use this for initialization
 	void Start () {
-		fireScript = transform.Find("laserpistol").GetComponent<raycast>();  
+		fireScript = GameObject.FindObjectOfType<PlayerMovement>().GetComponent<Shooting>();  
 		PauseUI.SetActive(false);
 		var text = FPSText.GetComponent<Text>();
 		text.color = Color.red;
@@ -26,7 +26,6 @@ public class PauseMenu : MonoBehaviour {
 			FPSText.SetActive(false);
 		}
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		PauseToggle();
@@ -54,6 +53,11 @@ public class PauseMenu : MonoBehaviour {
 			paused = !paused;
 		}
 	}
+	public void DisconnectButton() {
+		GameObject.Find("PauseMenuUI").SetActive(false);
+		GameObject.Find("MainMenuUI").SetActive(true);
+		PhotonNetwork.Disconnect();
+	}
 	public void ResumeButton(){
 		paused = false;
 	}
@@ -62,14 +66,6 @@ public class PauseMenu : MonoBehaviour {
 	}
 	public void ToggleFPS(){
 		ShowFps = !ShowFps;
-	}
-	public void ToggleVsync(){
-		if (QualitySettings.vSyncCount == 1){
-			QualitySettings.vSyncCount = 0;
-		}
-		if (QualitySettings.vSyncCount == 0){
-			QualitySettings.vSyncCount = 1;
-		}
 	}
 	public void TogglePauseMenu(){
 		if (paused){

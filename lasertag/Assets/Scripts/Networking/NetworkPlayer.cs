@@ -6,6 +6,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 	Vector3 realPosition = Vector3.zero;
 	Quaternion realRotation = Quaternion.identity;
 	Animator anim;
+	bool gotFirstUpdate = false;
 
 	// Use this for initialization
 	void Start () {
@@ -33,10 +34,22 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 		}
 		else {
 			//this is everyone elses players, we recieve their posisions here  
+
+			// right now realPosition holds the player position on the Last frame
+			// instead of simply updating "RealPosition" and continuing to lerp
+			// we MAY want to set out transform.position IMMEDIITLY to this old "realPosition"
+			// then update realPosition
+
 			realPosition = (Vector3)stream.ReceiveNext(); //recieve others posisions
 			realRotation = (Quaternion)stream.ReceiveNext(); // recieve others rotations 
 			anim.SetFloat("Speed", (float)stream.ReceiveNext());
 			anim.SetBool("Jumping", (bool)stream.ReceiveNext());
+
+			if (gotFirstUpdate == false) {
+				transform.position = realPosition;
+				transform.rotation = realRotation;
+				gotFirstUpdate = true;
+			}
 		}
 
 	}
