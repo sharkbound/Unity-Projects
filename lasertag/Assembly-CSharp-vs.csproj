@@ -106,6 +106,7 @@
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
      <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
      <Compile Include="Assets\Scripts\FXStuff\FXManager.cs" />
+     <Compile Include="Assets\Scripts\FXStuff\SelfDestruct.cs" />
      <Compile Include="Assets\Scripts\HealthScripts\Health.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkManager.cs" />
@@ -123,6 +124,7 @@
      <Compile Include="Assets\Scripts\playerScripts\chatWindowManager.cs" />
      <Compile Include="Assets\Scripts\playerScripts\cursorLock.cs" />
      <Compile Include="Assets\Scripts\playerScripts\raycast.cs" />
+     <None Include="Assets\PlayerItems\VisualFX\SniperBulletFXShader.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

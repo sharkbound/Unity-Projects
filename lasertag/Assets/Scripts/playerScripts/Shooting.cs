@@ -5,7 +5,10 @@ public class Shooting : MonoBehaviour {
 
 	public float FireRate = 0.5f;
 	public float MaxRayDist = 100f;
-	public float Damage = 25f;
+	//public float Damage = 25f;
+	public float MaxDamage = 25f;
+	public float MinDamage = 9f;
+	float randomDmg = 0f;
 	float cooldown = 0f;
 	RaycastHit hitinfo;
 	Ray ray;
@@ -48,7 +51,8 @@ public class Shooting : MonoBehaviour {
 		hitTransform = FindClosestHitObject(ray, out hitPoint);
 
 		if(hitTransform != null) {
-			Debug.Log ("we hit - " + hitTransform.transform.name);
+
+			//Debug.Log ("we hit - " + hitTransform.transform.name);
 			Health h = hitTransform.GetComponent<Health>();
 
 			while (h == null && hitTransform.parent) {
@@ -64,8 +68,10 @@ public class Shooting : MonoBehaviour {
 					Debug.LogError("PhotonView not found");
 				}
 				else {
-					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, Damage);
-					Debug.LogWarning(h.currentHP);
+					randomDmg = Random.Range(MinDamage, MaxDamage);
+					//Debug.LogWarning("The random dmg value is: " + randomDmg);
+					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, randomDmg);
+					//Debug.LogWarning(h.currentHP);
 
 				}
 			}

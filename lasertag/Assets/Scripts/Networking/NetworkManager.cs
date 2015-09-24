@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour {
+	public GameObject MyPlayer;
 	public Text ChatWindow;
 	public List<string> chatMessages;
 	int maxChatMessages = 5;
@@ -16,6 +17,8 @@ public class NetworkManager : MonoBehaviour {
 	private PhotonView PV;
 	// Use this for initialization
 	void Start () {
+
+		GetComponent<FXManager>().enabled = true;
 		PV = GetComponent<PhotonView>();
 		spawns = GameObject.FindObjectsOfType<PlayerSpawns>();
 		ConnectStatus = GameObject.Find("ConnectionStatus").GetComponent<Text>();
@@ -84,7 +87,7 @@ public class NetworkManager : MonoBehaviour {
 		AddChatMessage(PhotonNetwork.player.name + " has spawned!");
 
 		PlayerSpawns MySpawnLocation = spawns[ Random.Range(0, spawns.Length) ];
-		GameObject MyPlayer = PhotonNetwork.Instantiate("AnimRobot2", MySpawnLocation.transform.position,
+	    MyPlayer = PhotonNetwork.Instantiate("AnimRobot2", MySpawnLocation.transform.position,
 		                          MySpawnLocation.transform.rotation, 0);
 
 		MyPlayer.transform.FindChild("FirstPersonCharacter").GetComponent<Camera>().enabled = true;
@@ -147,6 +150,6 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void OnLeftRoom() {
-		AddChatMessage(PhotonNetwork.player.name + " has left the server");
+		//AddChatMessage(PhotonNetwork.player.name + " has left the server");
 	}
 }

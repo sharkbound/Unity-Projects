@@ -5,6 +5,7 @@ public class Health : MonoBehaviour {
 
 	public float HitPoints = 100f;
 	public float currentHP;
+	private GameObject CrateRespawn;
 	// Use this for initialization
 	void Start () {
 		currentHP = HitPoints;
@@ -28,6 +29,7 @@ public class Health : MonoBehaviour {
 		else {
 			if (PhotonNetwork.isMasterClient) {
 				PhotonNetwork.Destroy(gameObject);
+
 			}
 		}
 	}
