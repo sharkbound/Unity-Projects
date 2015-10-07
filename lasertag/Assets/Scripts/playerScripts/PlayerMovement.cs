@@ -34,6 +34,28 @@ public class PlayerMovement : MonoBehaviour {
 		if (charater.isGrounded && Input.GetButton("Jump")) {
 			verticalVelocity = jumpSpeed;
 		}
+
+		adjustAimAngle();
+	}
+
+	void adjustAimAngle() { 
+		Camera myCamera = this.GetComponentInChildren<Camera>();
+
+		if (myCamera == null) {
+			Debug.LogError("Apperently i am missing a camera...");
+			return;
+		}
+
+		float AimAngle = 0f;
+		if (myCamera.transform.rotation.eulerAngles.x <= 90) {
+			AimAngle = -myCamera.transform.rotation.eulerAngles.x;
+		}
+		else {
+			AimAngle = 360 - myCamera.transform.rotation.eulerAngles.x;
+		}
+
+		anim.SetFloat("AimAngle", AimAngle);
+
 	}
 
 	void FixedUpdate(){

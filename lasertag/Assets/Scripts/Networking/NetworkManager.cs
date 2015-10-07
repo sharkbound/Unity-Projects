@@ -97,6 +97,7 @@ public class NetworkManager : MonoBehaviour {
 		MyPlayer.GetComponent<PlayerCam>().enabled = true;
 		MyPlayer.GetComponent<FirstToThirdperson>().enabled = true;
 		MyPlayer.GetComponent<Shooting>().enabled = true;
+		MyPlayer.GetComponentInChildren<WeaponData>().enabled = true;
 		ToggleOverViewCam();
 	}
 

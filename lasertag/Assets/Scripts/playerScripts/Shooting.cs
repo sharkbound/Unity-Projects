@@ -76,18 +76,24 @@ public class Shooting : MonoBehaviour {
 				}
 			}
 			if (fxManager != null) {
-				fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
+				DoGunFX(hitPoint);
 			}
 		}
 		else {
 			// we did not hit anything except empty space, but do visual fx anyway
 			if (fxManager != null) {
 				hitPoint = Camera.main.transform.position + (Camera.main.transform.forward * 100f);
-				fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
+				DoGunFX(hitPoint);
+				//fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
 			}
 		}
 
 		cooldown = FireRate;
+	}
+
+	void DoGunFX(Vector3 hitpoint){
+		WeaponData wd = gameObject.GetComponentInChildren<WeaponData>();
+		fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, wd.transform.position, hitpoint);
 	}
 
 	Transform FindClosestHitObject(Ray raycast, out Vector3 hitPoint) {
