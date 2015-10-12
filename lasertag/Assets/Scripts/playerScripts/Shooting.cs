@@ -86,7 +86,8 @@ public class Shooting : MonoBehaviour {
 				else {
 					randomDmg = Random.Range(wd.MinDamage, wd.MaxDamage);
 					//Debug.LogWarning("The random dmg value is: " + randomDmg);
-					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, randomDmg);
+					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, randomDmg, 
+					                                 PhotonNetwork.player.name);
 					//Debug.LogWarning(h.currentHP);
 
 				}

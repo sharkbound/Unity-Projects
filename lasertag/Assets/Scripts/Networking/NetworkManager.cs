@@ -103,7 +103,8 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void ToggleOverViewCam(){
-		OverViewCamera.enabled = !OverViewCamera.enabled;
+		//OverViewCamera.enabled = !OverViewCamera.enabled;
+		OverViewCamera.enabled = false;
 	}
 
 	public void UpdateSavedUsername() {
