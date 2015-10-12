@@ -27,11 +27,21 @@ public class Health : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		else {
-			if (PhotonNetwork.isMasterClient) {
+			if ( GetComponent<PhotonView>().isMine ) {
+				if ( gameObject.tag == "Player" ){
+					GameObject.Find("StandbyCamera").SetActive(true);
+					GameObject.FindObjectOfType<NetworkManager>().RespawnTimer = 2.5f;
+				}
 				PhotonNetwork.Destroy(gameObject);
-
 			}
 		}
+	}
+
+	void deathMSG(){
+
+		GameObject gameManager = GameObject.Find("_PhotonStuff");
+		string playerName = PhotonNetwork.player.name;
+		gameManager.GetComponent<NetworkManager>().AddChatMessage(playerName + " has died!");
 	}
 
 }

@@ -15,6 +15,7 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject UsernameUI;
 	public GameObject MainMenuUI;
 	private PhotonView PV;
+	public float RespawnTimer = 0f;
 	// Use this for initialization
 	void Start () {
 
@@ -152,5 +153,16 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnLeftRoom() {
 		//AddChatMessage(PhotonNetwork.player.name + " has left the server");
+	}
+
+
+	void Update() {
+		if (RespawnTimer > 0) {
+			RespawnTimer -= Time.deltaTime;
+
+			if (RespawnTimer <= 0) { // respawn player
+				SpawnMyPlayer();
+			}
+		}
 	}
 }
