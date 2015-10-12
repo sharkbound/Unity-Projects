@@ -3,17 +3,15 @@ using System.Collections;
 
 public class Shooting : MonoBehaviour {
 
-	public float FireRate = 0.5f;
 	public float MaxRayDist = 100f;
 	//public float Damage = 25f;
-	public float MaxDamage = 25f;
-	public float MinDamage = 9f;
 	float randomDmg = 0f;
 	float cooldown = 0f;
 	RaycastHit hitinfo;
 	Ray ray;
 	FXManager fxManager;
 	PhotonView fxManagerPV;
+	WeaponData wd;
 
 	void Start() {
 		fxManager = GameObject.FindObjectOfType<FXManager>();
@@ -24,6 +22,11 @@ public class Shooting : MonoBehaviour {
 
 		if (fxManager == null) {
 			Debug.LogError("could not find a FXManager");
+		}
+
+		wd = gameObject.GetComponentInChildren<WeaponData>();
+		if (wd == null) {
+			Debug.LogError("could not find WeaponData component!");
 		}
 	}
 
@@ -40,6 +43,19 @@ public class Shooting : MonoBehaviour {
 
 
 	void fire(){
+
+		if (PauseToggle.IsPaused) {
+			return;
+		}
+
+		if (wd == null) {
+			wd = gameObject.GetComponentInChildren<WeaponData>();
+			if (wd == null) {
+				Debug.LogError("could not find WeaponData component!");
+				return;
+			}
+		}
+
 		if (cooldown > 0){
 			return;
 		}
@@ -68,7 +84,7 @@ public class Shooting : MonoBehaviour {
 					Debug.LogError("PhotonView not found");
 				}
 				else {
-					randomDmg = Random.Range(MinDamage, MaxDamage);
+					randomDmg = Random.Range(wd.MinDamage, wd.MaxDamage);
 					//Debug.LogWarning("The random dmg value is: " + randomDmg);
 					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, randomDmg);
 					//Debug.LogWarning(h.currentHP);
@@ -88,11 +104,10 @@ public class Shooting : MonoBehaviour {
 			}
 		}
 
-		cooldown = FireRate;
+		cooldown = wd.FireRate;
 	}
 
 	void DoGunFX(Vector3 hitpoint){
-		WeaponData wd = gameObject.GetComponentInChildren<WeaponData>();
 		fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, wd.transform.position, hitpoint);
 	}
 
@@ -111,6 +126,7 @@ public class Shooting : MonoBehaviour {
 				// c) or, if not b) is at least closer than the previous thing
 				closestHit = rayhit.transform;
 				distance = rayhit.distance;
+				hitPoint = rayhit.point;
 			}
 		}
 		//closest hit is now ether null or it contains the closest hit

@@ -48,7 +48,7 @@ public class NetworkManager : MonoBehaviour {
 			PhotonNetwork.player.name = PlayerPrefs.GetString("username");
 			UsernameUI.SetActive(false);
 			Debug.Log("Connect, Playername: " + PhotonNetwork.player.name);
-			PhotonNetwork.ConnectUsingSettings("Dev Build");
+			PhotonNetwork.ConnectUsingSettings("Dev Build networktest v1.5");
 			ChangeStatusText();
 		}
 	}

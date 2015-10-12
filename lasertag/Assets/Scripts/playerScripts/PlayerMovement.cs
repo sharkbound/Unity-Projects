@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		// if the game is paused do nothing / dont move
+		if (PauseToggle.IsPaused) {
+			return;
+		}
 		// WASD forward/back is stored in direction
 		direction = transform.rotation * new Vector3(Input.GetAxis("Horizontal"), 0, 
 		                                             Input.GetAxis("Vertical"));
@@ -28,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (direction.magnitude > 1f){
 			direction = direction.normalized;
 		}
+
 		// set the speed float to the vector3 lenght of the direction vector
 		anim.SetFloat("Speed", direction.magnitude);
 

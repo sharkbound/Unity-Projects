@@ -21,6 +21,10 @@ public class PlayerCam : MonoBehaviour {
 	
 	void Update ()
 	{
+		if (PauseToggle.IsPaused) {
+			return;
+		}
+
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			// Read the mouse input axis

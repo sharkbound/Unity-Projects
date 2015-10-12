@@ -109,6 +109,7 @@
      <Compile Include="Assets\Scripts\FXStuff\SelfDestruct.cs" />
      <Compile Include="Assets\Scripts\HealthScripts\Health.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\PauseToggle.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Networking\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\Networking\PlayerSpawns.cs" />

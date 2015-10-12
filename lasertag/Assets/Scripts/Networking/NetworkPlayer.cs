@@ -7,6 +7,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 	Quaternion realRotation = Quaternion.identity;
 	Animator anim;
 	bool gotFirstUpdate = false;
+	float realAimAngle = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 		else {
 			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
 			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+			anim.SetFloat("AimAngle", Mathf.Lerp(anim.GetFloat("AimAngle"), realAimAngle, 0.1f));
 		}
 	}
 
@@ -31,6 +33,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 			stream.SendNext(transform.rotation); // send our rotation to the network
 			stream.SendNext(anim.GetFloat("Speed"));
 			stream.SendNext(anim.GetBool("Jumping"));
+			stream.SendNext(anim.GetFloat("AimAngle"));
 		}
 		else {
 			//this is everyone elses players, we recieve their posisions here  
@@ -44,10 +47,12 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 			realRotation = (Quaternion)stream.ReceiveNext(); // recieve others rotations 
 			anim.SetFloat("Speed", (float)stream.ReceiveNext());
 			anim.SetBool("Jumping", (bool)stream.ReceiveNext());
+			realAimAngle = (float)stream.ReceiveNext();
 
 			if (gotFirstUpdate == false) {
 				transform.position = realPosition;
 				transform.rotation = realRotation;
+				anim.SetFloat("AimAngle", realAimAngle);
 				gotFirstUpdate = true;
 			}
 		}

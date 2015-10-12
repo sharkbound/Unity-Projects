@@ -18,6 +18,7 @@ public class MoveScript : MonoBehaviour {
 	//is the player on ground?
 	void Update(){
 
+
 		//var camrot = GameObject.Find ("pc").transform.rotation;
 		// charater controller variable
 		CharacterController controller = GetComponent<CharacterController> ();
@@ -38,8 +39,10 @@ public class MoveScript : MonoBehaviour {
 		//Applying gravity to the controller
 		moveDirection.y -= Gravity * Time.deltaTime;
 	
-		//Making the character move
-		controller.Move (moveDirection * Time.deltaTime);
+		// if the game is paused dont move
+			//Making the character move
+			controller.Move (moveDirection * Time.deltaTime);
+
 	}
 }
 
