@@ -36,19 +36,6 @@ public class FirstToThirdperson : MonoBehaviour {
 			transform.position = GameObject.Find("tele1").transform.position;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			if (Locked){
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-				Locked = !Locked;
-			}
-			else {
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-				Locked = !Locked;
-			}
-		}
-
 		if (Input.GetKeyDown(KeyCode.LeftControl)) { 
 			if (firstPersonEnabled){
 				firstPerson.enabled = false;

@@ -84,7 +84,11 @@ public class Shooting : MonoBehaviour {
 					Debug.LogError("PhotonView not found");
 				}
 				else {
-					randomDmg = Random.Range(wd.MinDamage, wd.MaxDamage);
+					if (wd.IsAuto) {
+						randomDmg = Random.Range(wd.AutoMinDamage, wd.AutoMaxDamage);
+					} else {
+						randomDmg = Random.Range(wd.MinDamage, wd.MaxDamage);
+					}
 					//Debug.LogWarning("The random dmg value is: " + randomDmg);
 					h.GetComponent<PhotonView>().RPC("TakeDmg", PhotonTargets.AllBuffered, randomDmg, 
 					                                 PhotonNetwork.player.name);
@@ -104,8 +108,11 @@ public class Shooting : MonoBehaviour {
 				//fxManagerPV.RPC("SniperBulletFX", PhotonTargets.All, Camera.main.transform.position, hitPoint);
 			}
 		}
-
-		cooldown = wd.FireRate;
+		if (wd.IsAuto) {
+			cooldown = wd.AutoFireRate;
+		} else {
+			cooldown = wd.FireRate;
+		}
 	}
 
 	void DoGunFX(Vector3 hitpoint){

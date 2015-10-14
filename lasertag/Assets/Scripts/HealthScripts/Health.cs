@@ -6,7 +6,7 @@ public class Health : MonoBehaviour {
 	public float HitPoints = 100f;
 	public float currentHP;
 	private GameObject CrateRespawn;
-	public string[] deathMessages = new string[5];
+	public string[] deathMessages = new string[7];
 	// Use this for initialization
 	void Start () {
 		setDeathMessages();
@@ -24,8 +24,10 @@ public class Health : MonoBehaviour {
 		deathMessages[0] = " was humiliated by ";
 		deathMessages[1] = " died by the hands of ";
 		deathMessages[2] = " walked into the gun of ";
-		deathMessages[3] = " tried to make peace with  ";
+		deathMessages[3] = " was trying to make peace with  ";
 		deathMessages[4] = " tried to beat ";
+		deathMessages[5] = " ate the bullets of ";
+		deathMessages[6] = " was completly and utterly demolished by ";
 	}
     
 	[PunRPC]
