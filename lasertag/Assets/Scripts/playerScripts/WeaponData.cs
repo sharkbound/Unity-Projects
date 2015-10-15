@@ -14,6 +14,9 @@ public class WeaponData : MonoBehaviour {
 	public float AutoMinDamage = 5f;
 	public float AutoFireRate = 0.25f;
 
+	public string AutoOnMessage = "auto enabled. Press M to change";
+	public string AutoOffMessage = "auto disabled. Press M to change";
+
 	public bool IsAuto = false;
 	// Use this for initialization
 	void Start () {
@@ -25,18 +28,18 @@ public class WeaponData : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	   if (Input.GetKeyDown(KeyCode.Mouse1)) {
+	   if (Input.GetKeyDown(KeyCode.M)) {
 			IsAuto = !IsAuto;
 		}
 		if (PhotonNetwork.connected){
 			if (IsAuto) {
-				if (AutoStatis.text != "auto enabled. right click to change") {
-					AutoStatis.text = "auto enabled. right click to change";
+				if (AutoStatis.text != AutoOnMessage) {
+					AutoStatis.text = AutoOnMessage;
 				}
 			}
 			else {
-				if (AutoStatis.text != "auto disabled. right click to change") {
-					AutoStatis.text = "auto disabled. right click to change";
+				if (AutoStatis.text != AutoOffMessage) {
+					AutoStatis.text = AutoOffMessage;
 				}
 			}
 		}

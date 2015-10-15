@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class FirstToThirdperson : MonoBehaviour {
-	bool Locked = true;
+	//bool Locked = true;
 	Transform firstPersonCam;
 	Transform thirdPersonCam;
 	bool thirdPersonEnabled = false;
@@ -31,10 +31,11 @@ public class FirstToThirdperson : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.T)){
+
+	/* if (Input.GetKeyDown(KeyCode.T)){
 			Debug.Log ("press");
 			transform.position = GameObject.Find("tele1").transform.position;
-		}
+		} */
 
 		if (Input.GetKeyDown(KeyCode.LeftControl)) { 
 			if (firstPersonEnabled){

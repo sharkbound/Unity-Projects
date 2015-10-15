@@ -122,6 +122,7 @@
      <Compile Include="Assets\Scripts\playerScripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\playerScripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\playerScripts\SimpleMouseRotator1.cs" />
+     <Compile Include="Assets\Scripts\playerScripts\SpecialAbilitys.cs" />
      <Compile Include="Assets\Scripts\playerScripts\TeleportScript.cs" />
      <Compile Include="Assets\Scripts\playerScripts\WeaponData.cs" />
      <Compile Include="Assets\Scripts\playerScripts\chatWindowManager.cs" />

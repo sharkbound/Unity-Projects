@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (PauseToggle.IsPaused) {
 			return;
 		}
+
 		// WASD forward/back is stored in direction
 		direction = transform.rotation * new Vector3(Input.GetAxis("Horizontal"), 0, 
 		                                             Input.GetAxis("Vertical"));
