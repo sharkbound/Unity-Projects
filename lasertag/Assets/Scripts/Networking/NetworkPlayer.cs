@@ -11,7 +11,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator>();
+		InitAnim();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +23,12 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
 			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
 			anim.SetFloat("AimAngle", Mathf.Lerp(anim.GetFloat("AimAngle"), realAimAngle, 0.1f));
+		}
+	}
+
+	void InitAnim() {
+		if ( anim == null ){
+			anim = GetComponent<Animator>();
 		}
 	}
 

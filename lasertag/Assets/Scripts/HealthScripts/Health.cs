@@ -1,23 +1,50 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Health : MonoBehaviour {
 
+	Text HealthRemainingText;
+
 	public float HitPoints = 100f;
 	public float currentHP;
+
+	//public static bool PlayerDead = false;
+
+	Health PlayerHealth;
+
+
 	private GameObject CrateRespawn;
+
 	public string[] deathMessages = new string[7];
+
 	// Use this for initialization
 	void Start () {
 		setDeathMessages();
 		currentHP = HitPoints;
-	
+		//GetHealthComponent();
+
 	}
 
 	void Update(){
 		if (Input.GetKey(KeyCode.L)) {
 			TakeDmg(1000, "suicide");
 		}
+
+		//SetHealthDisplay();
+	}
+
+	void GetHealthComponent() {
+		if (gameObject.tag == "Player"){
+			HealthRemainingText = GameObject.Find("CurrentHealth").GetComponent<Text>();
+			PlayerHealth = this.GetComponent<Health>();
+		} 
+	}
+
+	void SetHealthDisplay() {
+		if ( gameObject.tag == "Player" && HealthRemainingText.text != PlayerHealth.currentHP.ToString() ) {
+			HealthRemainingText.text = PlayerHealth.currentHP.ToString();
+		} 
 	}
 
 	void setDeathMessages(){
@@ -41,6 +68,7 @@ public class Health : MonoBehaviour {
 	}
 
 	void Die(string enemyName){
+
 		if (GetComponent<PhotonView>().instantiationId == 0) {
 			Destroy(gameObject);
 		}
@@ -48,6 +76,8 @@ public class Health : MonoBehaviour {
 			if ( GetComponent<PhotonView>().isMine ) {
 				if ( gameObject.tag == "Player" ){
 					deathMSG(enemyName);
+					GameObject.Find("TeleportAbilityStatus").GetComponent<Text>().enabled = false;
+					GameObject.Find("CurrentHealth").GetComponent<Text>().enabled = false;
 					GameObject.Find("StandbyCamera").GetComponent<Camera>().enabled = true;
 					GameObject.FindObjectOfType<NetworkManager>().RespawnTimer = 2.5f;
 				}

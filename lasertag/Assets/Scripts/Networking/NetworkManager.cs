@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour {
-	public GameObject MyPlayer;
+	public static GameObject MyPlayer;
 	public Text ChatWindow;
 	public List<string> chatMessages;
 	int maxChatMessages = 5;
@@ -50,8 +50,9 @@ public class NetworkManager : MonoBehaviour {
 			UsernameUI.SetActive(false);
 			Debug.Log("Connect, Playername: " + PhotonNetwork.player.name);
 			PhotonNetwork.ConnectUsingSettings("Dev Build networktest v1.5");
-			ChangeStatusText();
+		//	ChangeStatusText();
 		}
+		PauseToggle.IsPaused = false;
 	}
 
 	void OnJoinedLobby(){
@@ -64,7 +65,7 @@ public class NetworkManager : MonoBehaviour {
 		AddChatMessage(PhotonNetwork.player.name + " has joined the server");
 		Debug.Log("OnJoinedRoom");
 		SpawnMyPlayer();
-		ChangeStatusText();
+	//	ChangeStatusText();
 	}
 
 	void OnPhotonCreateRoomFailed(){
@@ -76,7 +77,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	void OnConnectedToMaster(){
-		ChangeStatusText();
+		//ChangeStatusText();
 		Debug.Log("OnConnectedToMaster");
 	}
 
@@ -101,6 +102,9 @@ public class NetworkManager : MonoBehaviour {
 		MyPlayer.GetComponentInChildren<WeaponData>().enabled = true;
 		MyPlayer.GetComponent<CameraZoom>().enabled = true;
 		MyPlayer.GetComponent<SpecialAbilitys>().enabled = true;
+
+		GameObject.Find("CurrentHealth").GetComponent<Text>().enabled = true;
+
 		ToggleOverViewCam();
 	}
 
