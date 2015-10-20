@@ -102,6 +102,7 @@ public class NetworkManager : MonoBehaviour {
 		MyPlayer.GetComponentInChildren<WeaponData>().enabled = true;
 		MyPlayer.GetComponent<CameraZoom>().enabled = true;
 		MyPlayer.GetComponent<SpecialAbilitys>().enabled = true;
+		MyPlayer.GetComponentInChildren<GrenadeSpawn>().enabled = true;
 
 		GameObject.Find("CurrentHealth").GetComponent<Text>().enabled = true;
 

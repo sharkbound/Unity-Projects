@@ -12,6 +12,7 @@ public class PauseToggle : MonoBehaviour {
 	public static bool IsPaused = false;
 	public bool ShowFPS = false;
 	public static bool Disconnecting = false;
+	public static bool IsGrenadeThrown = false;
 
 	private int fps = 0;
 	private int frameCount = 0;
@@ -130,5 +131,9 @@ public class PauseToggle : MonoBehaviour {
 
 	public void ToggleFpsCounter() {
 		ShowFPS = !ShowFPS;
+	}
+
+	public void LennyFaceButton() {
+		GameObject.FindObjectOfType<PlayerMovement>().GetComponent<Health>().TakeDmg(1000f, "( ͡° ͜ʖ ͡°)");
 	}
 }

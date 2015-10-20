@@ -1,16 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HealthScripts\Health.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\playerScripts\SpecialAbilitys.cs">
     <Files>
-      <File FileName="Assets\Scripts\HealthScripts\Health.cs" Line="34" Column="5" />
-      <File FileName="Assets\Scripts\MenuScripts\PauseToggle.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\playerScripts\SpecialAbilitys.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\playerScripts\SpecialAbilitys.cs" Line="48" Column="58" />
       <File FileName="Assets\Scripts\playerScripts\CameraZoom.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\playerScripts\Shooting.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Networking\NetworkManager.cs" Line="106" Column="18" />
+      <File FileName="Assets\Scripts\Networking\NetworkManager.cs" Line="105" Column="66" />
       <File FileName="Assets\Scripts\playerScripts\PlayerMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\playerScripts\WeaponData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Networking\NetworkPlayer.cs" Line="13" Column="17" />
+      <File FileName="Assets\Scripts\Networking\NetworkPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FXStuff\FXManager.cs" Line="25" Column="50" />
+      <File FileName="Assets\Scripts\GrenadeScripts\explsionScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

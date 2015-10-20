@@ -4,7 +4,10 @@ using UnityEngine.UI;
 
 public class SpecialAbilitys : MonoBehaviour {
 
+	public Rigidbody GrenadePrefab;
+
 	public float teleportCooldown = 2.5f;
+	public float GrenadeThrowPower = 10f;
 
 	public string RemainingCooldownMessage = "teleport recharging - ";
 	public string SetTeleportPointReady = "Teleport ready! press t to set point";
@@ -15,29 +18,50 @@ public class SpecialAbilitys : MonoBehaviour {
 	bool teleportedPointSet = false;
 
 	Vector3 teleportLocation;
+	Vector3 GrenadeSpawnLocation;
 
 	Text abilityCooldownText;
+
+	GameObject GrenadeSpawnGameobject;
 
 	// Use this for initialization
 	void Start () {
 		currentTeleportCooldown = teleportCooldown;
 		abilityCooldownText = GameObject.Find("TeleportAbilityStatus").GetComponent<Text>();
 		abilityCooldownText.enabled = true;
+		GrenadeSpawnGameobject = GameObject.FindObjectOfType<GrenadeSpawn>().gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		currentTeleportCooldown -= Time.deltaTime;
+		TeleportAbility();
+		ThrowGrenade();
+	}
 
+	void ThrowGrenade() {
+
+		if (!PauseToggle.IsPaused && !PauseToggle.IsGrenadeThrown && Input.GetKeyDown(KeyCode.G)) {
+
+			GrenadeSpawnLocation = GrenadeSpawnGameobject.transform.position;
+				
+			GameObject clone = PhotonNetwork.Instantiate("Grenade", GrenadeSpawnLocation, transform.rotation, 0);
+			clone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * GrenadeThrowPower;
+		}
+	}
+
+	void TeleportAbility() {
+
+		currentTeleportCooldown -= Time.deltaTime;
+		
 		if ( currentTeleportCooldown >= 0f ) {
 			abilityCooldownText.text = RemainingCooldownMessage + currentTeleportCooldown.ToString("#.#");
 		} 
 		else if ( currentTeleportCooldown <= 0 && teleportedPointSet == false) {
 			abilityCooldownText.text = SetTeleportPointReady;
 		}
-
+		
 		if ( Input.GetKeyDown(KeyCode.T) && currentTeleportCooldown <= 0f ) {
-
+			
 			if (teleportedPointSet) {
 				transform.position = teleportLocation;
 				currentTeleportCooldown = teleportCooldown;
