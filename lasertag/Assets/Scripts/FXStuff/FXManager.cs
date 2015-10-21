@@ -9,11 +9,13 @@ public class FXManager : MonoBehaviour {
 	public AudioClip SniperBulletFXAudio;
 
 	public GameObject SniperFXCompletePrefab;
+	GameObject SniperFX;
+	LineRenderer LR;
 
 	Transform Audio;
 	AudioSource AS;
 
-	WeaponData wd;
+	//WeaponData wd;
 
 	void Start() {
 		//Audio = Instantiate(TempAudioSource);
@@ -22,13 +24,13 @@ public class FXManager : MonoBehaviour {
 
 	[PunRPC]
 	public void SniperBulletFX(Vector3 startPos, Vector3 endPos) {
-		wd = GameObject.FindObjectOfType<WeaponData>();
+		//wd = GameObject.FindObjectOfType<WeaponData>();
 
 		//Debug.Log("SniperBulletFX");
 		//CreateTempAudioSource(startPos);
 		if (SniperFXCompletePrefab != null) {
-			GameObject SniperFX = (GameObject)Instantiate(SniperFXCompletePrefab, startPos, Quaternion.LookRotation(endPos - startPos)); // Quaternion.LookRotation(endPos - startPos)
-			LineRenderer LR = SniperFX.transform.Find("LineFX").GetComponent<LineRenderer>();
+			SniperFX = (GameObject)Instantiate(SniperFXCompletePrefab, startPos, Quaternion.LookRotation(endPos - startPos)); // Quaternion.LookRotation(endPos - startPos)
+			LR = SniperFX.transform.Find("LineFX").GetComponent<LineRenderer>();
 			if (LR != null) {
 				LR.SetPosition(0, startPos);
 				LR.SetPosition(1, endPos);

@@ -9,6 +9,8 @@ public class Health : MonoBehaviour {
 	public float HitPoints = 100f;
 	public float currentHP;
 
+	int FloatCurrentHealthToInt = 100;
+
 	//public static bool PlayerDead = false;
 
 	Health PlayerHealth;
@@ -22,7 +24,7 @@ public class Health : MonoBehaviour {
 	void Start () {
 		setDeathMessages();
 		currentHP = HitPoints;
-		//GetHealthComponent();
+		GetHealthComponent();
 
 	}
 
@@ -31,19 +33,20 @@ public class Health : MonoBehaviour {
 			TakeDmg(1000, "suicide");
 		}
 
-		//SetHealthDisplay();
+		SetHealthDisplay();
 	}
 
 	void GetHealthComponent() {
 		if (gameObject.tag == "Player"){
 			HealthRemainingText = GameObject.Find("CurrentHealth").GetComponent<Text>();
-			PlayerHealth = this.GetComponent<Health>();
+			PlayerHealth = NetworkManager.MyPlayer.GetComponent<Health>();
 		} 
 	}
 
 	void SetHealthDisplay() {
 		if ( gameObject.tag == "Player" && HealthRemainingText.text != PlayerHealth.currentHP.ToString() ) {
-			HealthRemainingText.text = PlayerHealth.currentHP.ToString();
+			FloatCurrentHealthToInt = (int)PlayerHealth.currentHP;
+			HealthRemainingText.text = "HP: " + FloatCurrentHealthToInt.ToString();
 		} 
 	}
 

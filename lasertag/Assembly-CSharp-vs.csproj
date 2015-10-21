@@ -108,6 +108,7 @@
      <Compile Include="Assets\Scripts\FXStuff\FXManager.cs" />
      <Compile Include="Assets\Scripts\FXStuff\SelfDestruct.cs" />
      <Compile Include="Assets\Scripts\GrenadeScripts\GrenadeSpawn.cs" />
+     <Compile Include="Assets\Scripts\GrenadeScripts\SmoothGrenadeMovement.cs" />
      <Compile Include="Assets\Scripts\GrenadeScripts\explsionScript.cs" />
      <Compile Include="Assets\Scripts\HealthScripts\Health.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\PauseMenu.cs" />

@@ -134,6 +134,6 @@ public class PauseToggle : MonoBehaviour {
 	}
 
 	public void LennyFaceButton() {
-		GameObject.FindObjectOfType<PlayerMovement>().GetComponent<Health>().TakeDmg(1000f, "( ͡° ͜ʖ ͡°)");
+		NetworkManager.MyPlayer.GetComponent<Health>().TakeDmg(1000f, "( ͡° ͜ʖ ͡°)");
 	}
 }

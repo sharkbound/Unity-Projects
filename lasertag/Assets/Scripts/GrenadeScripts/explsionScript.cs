@@ -10,6 +10,7 @@ public class explsionScript : MonoBehaviour {
 	public float ExplosionDamage = 80f;
 
 	Health health;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -42,8 +43,33 @@ public class explsionScript : MonoBehaviour {
 		Invoke("DestroyGrenade", 0.1f);
 	}
 
+
 	void DestroyGrenade(){
-		PhotonNetwork.Destroy(gameObject);
+		if (GetComponent<PhotonView>().isMine) {
+			PhotonNetwork.Destroy(gameObject);
+		}
 	}
+
+/*	void OnCollisionEnter(Collision col){
+
+		if (col.transform.tag == "Player" && col.gameObject != NetworkManager.MyPlayer) {
+
+			AS.Play();
+			
+			Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+			
+			foreach (Collider collider in hits) {
+				
+				health = collider.GetComponent<Health>();
+				
+				if (health != null){
+					health.TakeDmg(ExplosionDamage, "Grenade");
+				}
+			}
+			
+			PauseToggle.IsGrenadeThrown = false;
+			Invoke("DestroyGrenade", 0.1f);
+		}
+	} */
 
 }

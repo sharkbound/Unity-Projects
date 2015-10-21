@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class SpecialAbilitys : MonoBehaviour {
 
+
 	public Rigidbody GrenadePrefab;
 
 	public float teleportCooldown = 2.5f;
@@ -18,22 +19,23 @@ public class SpecialAbilitys : MonoBehaviour {
 	bool teleportedPointSet = false;
 
 	Vector3 teleportLocation;
-	Vector3 GrenadeSpawnLocation;
+	//Vector3 GrenadeSpawnLocation;
 
 	Text abilityCooldownText;
 
-	GameObject GrenadeSpawnGameobject;
+	//GameObject GrenadeSpawnGameobject;
 
 	// Use this for initialization
 	void Start () {
 		currentTeleportCooldown = teleportCooldown;
 		abilityCooldownText = GameObject.Find("TeleportAbilityStatus").GetComponent<Text>();
 		abilityCooldownText.enabled = true;
-		GrenadeSpawnGameobject = GameObject.FindObjectOfType<GrenadeSpawn>().gameObject;
+		//GrenadeSpawnGameobject = GetComponentInChildren<GrenadeSpawn>().gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		TeleportAbility();
 		ThrowGrenade();
 	}
@@ -42,9 +44,9 @@ public class SpecialAbilitys : MonoBehaviour {
 
 		if (!PauseToggle.IsPaused && !PauseToggle.IsGrenadeThrown && Input.GetKeyDown(KeyCode.G)) {
 
-			GrenadeSpawnLocation = GrenadeSpawnGameobject.transform.position;
+			//GrenadeSpawnLocation = GrenadeSpawnGameobject.transform.position;
 				
-			GameObject clone = PhotonNetwork.Instantiate("Grenade", GrenadeSpawnLocation, transform.rotation, 0);
+			GameObject clone = PhotonNetwork.Instantiate("Grenade", Camera.main.transform.position, transform.rotation, 0);
 			clone.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * GrenadeThrowPower;
 		}
 	}
